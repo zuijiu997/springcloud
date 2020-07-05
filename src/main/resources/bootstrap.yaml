@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: micro-service
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        mode: polling
+        period: 1
+      config:
+        namespace: micro-service
+        sources:
+          - name: other
+          - name: ${spring.application.name}

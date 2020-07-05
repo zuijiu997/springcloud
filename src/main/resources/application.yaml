@@ -1,0 +1,14 @@
+management:
+  endpoint:
+    restart:
+      enabled: true
+    health:
+      enabled: true
+    info:
+      enabled: true
+
+user: ls
+
+spring:
+  zipkin:
+    base-url: http://micro-service-zipkin-server:9411
