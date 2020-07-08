@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: springcloud
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: springcloud
+  name: springcloud
+  namespace: springcloud
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: springcloud
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: springcloud
+  name: springcloud
+  namespace: springcloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springcloud
+  template:
+    metadata:
+      labels:
+        app: springcloud
+    spec:
+      containers:
+        - name: springcloud
+          image: zuijiu997/springcloud:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 90Mi
