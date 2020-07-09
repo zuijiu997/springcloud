@@ -14,10 +14,14 @@ podTemplate(label: label,cloud: "kubernetes" ){
 
         stage('docker'){
             container('ubuntu-build') {
-                 withDockerRegistry(credentialsId: '3f061478-979f-41be-8990-d081ff1002e9') {
-                    sh "docker build -t zuijiu997/springcloud:${params.VERSION} ."
-                    sh "docker push zuijiu997/springcloud:${params.VERSION}"
-                 }
+                 //withDockerRegistry(credentialsId: '3f061478-979f-41be-8990-d081ff1002e9') {
+                 //   sh "docker build -t zuijiu997/springcloud:${params.VERSION} ."
+                 //   sh "docker push zuijiu997/springcloud:${params.VERSION}"
+                 //}
+
+                 sh "docker build -t zuijiu997/springcloud:${params.VERSION} ."
+                 sh "docker login -u zuijiu997 -p zuijiu997"
+                 sh "docker push zuijiu997/springcloud:${params.VERSION}"
             }
         }
 
