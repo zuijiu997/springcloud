@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
         - name: springcloud
-          image: zuijiu997/springcloud:1.0.1
+          image: zuijiu997/springcloud:[VERSION]
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
